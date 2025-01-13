@@ -1,0 +1,187 @@
+﻿@{
+    ViewData["Title"] = "LogIn";
+    Layout = "_LayoutLogin";
+}
+
+@*===========================================================LogIN================================================================*@
+@*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">login</button>*@
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+            @* <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    <strong>@TempData["Message"]</strong>
+                </div>*@
+            @* <p class="bg-danger" style="color:white">@TempData["Message"]</p>*@
+            <div class="col-xl-10 col-lg-12 col-md-5">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        @if (@Context.Request.Query["login"] == "false")
+                        {
+                           <div class="alert alert-warning alert-dismissible fade show">
+                                Harap Login Untuk Melanjutkan
+                            </div> 
+                        }
+                        @if (@Context.Request.Query["logout"] == "true")
+                        {
+                           <div class="alert alert-success alert-dismissible fade show">
+                                Anda Sudah Berhasil logout
+                            </div> 
+                        }
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+
+                            <div class="col-lg-6 center">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                                    </div>
+                                    <form class="user" onsubmit="loginUser()">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                   name="Email" id="Email" aria-describedby="emailHelp"
+                                                   placeholder="Enter Email Address (Gmail.com)">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                   name="Password" id="Password" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">
+                                                    Remember
+                                                    Me
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center  mt-2">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a data-toggle="modal" href="#registerModal">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 align-self-md-center">
+                                <center>
+                                    <img src="https://www.pngkey.com/png/full/367-3670351_access-login-icon.png" height="300" width="300" />
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<div class="modal fade bd-example-modal-lg " id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-lg">
+                <div class="container">
+                    <form class="needs-validation novalidate mt-4">
+                        <div class="form-row">
+                            <div class="col mb-1">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="First name" value="" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid First Name
+                                </div>
+                            </div>
+                            <div class="col mb-1">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Last name" value="" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Last Name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-1">
+                                <label for="birthdate">Birthdate</label>
+                                <input type="date" class="form-control" id="birthdate" placeholder="birthdate" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Birthdate
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-1">
+                                <label type="number" for="gender">Gender</label>
+                                <select class="custom-select" id="gender" required>
+                                    <option value="">Choose Gender</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Gender.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-1">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" placeholder="08xxx" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Phone Number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-1">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="email" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Gmail
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-1">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="password" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Password.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="price">Picture</label>
+                                <input class="form-control" type="file" id="foto" accept="image/*" required />
+                                <div class="invalid-feedback"> Harap Input Picture</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" required>
+                                <label class="form-check-label" for="invalidCheck3">
+                                    Agree to terms and conditions
+                                </label>
+                                <div class="invalid-feedback">
+                                    You must agree before submitting.
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary m-4" onclick="Insert()" type="submit">Submit form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+
+

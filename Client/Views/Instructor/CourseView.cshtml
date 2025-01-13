@@ -1,0 +1,261 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_InstructorLayout";
+    @section Scripts{
+        <script src="~/js/Instructor/courseView.js" asp-append-version="true"></script>
+    }
+}
+<div class="container-fluid px-4">
+    <div class="row mt-4">
+        <div class="col-6"><h1>Course</h1></div>
+        <div class="col-6">
+            <ol class="breadcrumb mb-4 bg-white float-right">
+                <li class="breadcrumb-item"><a href="/instructor/">Instructor</a></li>
+                <li class="breadcrumb-item"><a href="/instructor/course">Course</a></li>
+                <li class="breadcrumb-item active">View Course</li>
+            </ol>
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div id="picture-course"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-sm table-hover mb-0" width="100%" id="table-course">
+                        
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" id="btnAddContent"></div>
+                    <div class="card-body">
+                        <div id="accordion"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" id="CourseChangeStatus">
+           
+        </div>
+    </div>
+<div class="modal" id="formInputContent">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tambah Content</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation" novalidate>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" id="titleContent" required>
+                            <div class="invalid-feedback"> Harap Input Title</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonContent" type="submit">Create Content</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="modal" id="formInputCatalogue">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tambah Catalogue</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation-catalogue" novalidate>
+
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="categoryId">Categories</label>
+                            <select class="form-control" id="categoryId">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonCatalogue" type="submit">Add Catalogue</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="modal" id="formInputSubContent">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tambah Sub Content</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation-subcontent" novalidate>
+                    <input type="hidden" id="contentId" value="" />
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Title</label>
+                            <input type="text" class="form-control" id="titleSubContent" required>
+                            <div class="invalid-feedback"> Harap Input Title</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <input class="form-control" type="file" id="videoSubContent" required accept="video/*"/>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonSubContent" type="submit">Create Sub Content</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>
+
+
+<div class="modal" id="formInputResource">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tambah Resource</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation-resource" novalidate>
+                    <input type="hidden" id="subContentId" value="" />
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <input class="form-control" type="file" id="fileResource" multiple required accept="application/pdf"/>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonResource" type="submit">Add Resource</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>
+
+<div class="modal" id="formInputQuiz">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Tambah Quiz</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation-quiz" novalidate>
+                    <input type="hidden" id="subContentIdQuiz" value="" />
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Question</label>
+                            <input type="text" class="form-control" id="question" required>
+                            <div class="invalid-feedback"> Harap Input Title</div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Answers</label>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="answer1" required>
+                                    <div class="invalid-feedback"> Harap Input Title</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check-inline">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="isCorrect1" value="1">Benar
+                                      </label>
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="isCorrect1" value="0">Salah
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="answer2" required>
+                                    <div class="invalid-feedback"> Harap Input Title</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check-inline">
+                                        <input type="radio" class="form-check-input" name="isCorrect2" value="1">Benar
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="isCorrect2" value="0">Salah
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="answer3" required>
+                                    <div class="invalid-feedback"> Harap Input Title</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check-inline">
+                                        <input type="radio" class="form-check-input" name="isCorrect3" value="1">Benar
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="isCorrect3" value="0">Salah
+                                      </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <input type="text" class="form-control" id="answer4" required>
+                                    <div class="invalid-feedback"> Harap Input Title</div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-check-inline">
+                                        <input type="radio" class="form-check-input" name="isCorrect4" value="1">Benar
+                                    </div>
+                                    <div class="form-check-inline">
+                                      <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="isCorrect4" value="0">Salah
+                                      </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonQuiz" type="submit">Add Resource</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>

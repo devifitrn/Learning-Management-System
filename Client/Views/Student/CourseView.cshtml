@@ -1,0 +1,137 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Student Page";
+    Layout = "_Layout";
+
+    @section Scripts{
+        <script>const userId = '@Context.Session.GetString("Id")';</script>
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="~/js/Student/StartCourse.js" asp-append-version="true"></script>
+    }
+
+}
+
+<div class="container-xl mt-4">
+    <div class="text-center " id="resources"></div>
+    <div class="overflow-auto">
+        <div class="force-overflow">
+
+            <div class="mt-4">
+                <!-- navigation in .card-header -->
+                <div class="card-header">
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#pill1">Content Course</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#pill2">Overview</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#pill3">Q&A</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#pill4">Notes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#reviews">Reviews</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .card-body.tab-content  -->
+                <div class="card-body tab-content">
+                    <div class="tab-pane fade show active" id="pill1">
+                        <div class="card">
+                            <div class="card-header" id="titleCourse"></div>
+                            <div class="panel-group" id="accordion">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                        <div class="text-center my-5" id="btnFinish"></div>
+                    </div>
+                    <div class="tab-pane fade" id="pill2">
+                        <h4 class="card-title">Tab 2 Title</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem molestiaenecessitatibus perferendis tempore!</p>
+                        <a href="#" class="btn btn-success">Read More 2</a>
+                    </div>
+                    <div class="tab-pane fade" id="pill3">
+                        <h4 class="card-title">Tab 3 Title</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt natus exercitationem quae.</p>
+                        <a href="#" class="btn btn-primary">Read More 3</a>
+                    </div>
+                    <div class="tab-pane fade" id="pill4">
+                        <h4 class="card-title">Tab 3 Title</h4>
+                        <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt natus exercitationem quae.</p>
+                        <a href="#" class="btn btn-primary">Read More 3</a>
+                    </div>
+                    <div class="tab-pane fade" id="reviews">
+                        <div>
+                            <div id="rating" class="mr-5" style="display:inline-block; text-align:center; width: fit-content">
+                            </div>
+                            <div id="ratingsChart" style="display:inline-block; text-align:left; width:auto; height:auto">
+                            </div>
+                        </div>
+
+                        <div id="comments">
+                        </div>   
+                    </div>
+
+                </div><!-- /.card-body -->
+            </div><!-- /.card -->
+        </div>
+    </div>
+</div>
+    
+    
+    
+    <!--/.container -->
+<!--<div class="container-fluid p-0">
+    <div class="row">
+        <div class="col-xl-4">-->
+<!-- Profile picture card-->
+<!--<div class="card mb-4 mb-xl-0">
+        <div class="card-body text-center">
+            <div id="picture-content"></div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-8">-->
+<!-- Account details card-->
+<!--<div class="card mb-4">
+                <div class="card-header">Course</div>
+                <div class="card-body">
+                    <form id="content-detail"></form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-lg-5">
+        <div class="card mb-4 text-center">
+            <div class="card-header text-center">Description</div>
+            <div class="card-body" id="description"></div>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-header" id="btnAddContent"></div>
+            <div class="card-body">
+                <div id="accordion">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->

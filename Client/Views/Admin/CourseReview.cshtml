@@ -1,0 +1,97 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AdminLayout";
+    @section Scripts{
+       <script src="~/js/Admin/courseReview.js" asp-append-version="true"></script>
+    }
+}
+
+<main style="position:relative">
+    <a href="/Admin/courses" style="position:absolute; top:15px; left:0; z-index:99">
+        <i class="fas fa-arrow-left me-1"></i>
+        Return to courses page
+    </a>
+    @*Header*@
+    <div class="card mb-3" style="background: aliceblue">
+        <div id="coursePicture"></div>
+        
+        <div class="card-body">
+            <h2 class="course-title" style="text-align: center"></h2>
+            <p class="course-description" style="text-align: center"></p>
+            <p class="course-category" style="text-align: center"><small class="course-category text-muted"></small></p>
+            <p style="text-align: center">Status: <span class="course-status text-muted"></span></p>
+            <p style="text-align: center">Price: <span class="course-price text-muted"></span></p>
+        </div>
+    </div>
+    <nav>
+        <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Creator</a>
+            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Contents</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent" style="background: aliceblue">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            @*User Info*@
+            <div class="card ml-auto mr-auto" style="width: fit-content;">
+                <img class="card-img-top" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/apple/325/bust-in-silhouette_1f464.png" alt="" style="height:10rem; width: 20rem">
+                <div class="card-body">
+                    <table class="ml-auto mr-auto" style="text-align:justify-all">
+                        <tr>
+                            <td>First Name</td>
+                            <td id="firstName"></td>
+                        </tr>
+                        <tr>
+                            <td>Last Name</td>
+                            <td id="lastName"></td>
+                        </tr>
+                        <tr>
+                            <td>Birth Date</td>
+                            <td id="birthDate"></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td id="gender"></td>
+                        </tr>
+                        <tr>
+                            <td>Phone</td>
+                            <td id="phone"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td id="email"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+             @*Course Contents*@
+            <div class="accordion" id="courseContents">
+            </div>
+        </div>  
+    </div>
+    <hr>
+    <ul class="nav nav-pills mb-3 justify-content-center" id="pills-tab" role="tablist">
+        <li class="nav-item">
+            <button class="btn btn-primary" id="pills-home-tab" data-toggle="collapse" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="true">Review</button>
+        </li>
+        
+    </ul>
+    <div class="tab-content" id="reviewTab">
+        <div class="tab-pane fade show active" id="pills-review" role="tabpanel" aria-labelledby="pills-home-tab">
+            <form onsubmit="Revise()" style="text-align:center">
+                <input id="feedback" type="text" size="70" required>
+                <div id="reviewButton">
+                     <button class="btn btn-info" type="submit">Send</button>
+                </div>
+            </form>
+        </div>    
+    </div>
+    <hr>
+    <div id="approveButton" style="text-align:center"><button class="btn btn-success" onclick="Approve()">Approve</button></div>
+</main>
+
+
+
+
+   

@@ -1,0 +1,74 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title></title>
+        <style>
+            .container {
+                position: relative;
+                width: 95%;
+                margin: auto;
+                border-style: double;
+            }
+            .text-block {
+                position: absolute;
+                width:100%;
+                top: 20%;
+                font-size:20px;
+                font-size:2vw; 
+            }
+            .text-block-right {
+                position: absolute;
+                width:50%;
+                bottom: 15%;
+                left: 50%;
+                font-size:20px;
+                font-size:2vw; 
+            }
+            .text-block-left {
+                position: absolute;
+                width:50%;
+                bottom: 15%;
+                right: 50%;
+                font-size:20px;
+                font-size:2vw; 
+            }
+            img{
+                width:100%; 
+                height:auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container" id="printableArea">
+            <img src="/assets/cert_bg.jpg"/>
+            <div class="text-block">
+                <h1 align="center">Certificate of Completion</h1><br />
+                <h5 align="center" style="margin-bottom:0px;"><i>This is to certify that</i></h5>
+                <h2 align="center" style="margin-top:5px;"><b id="userName"></b></h2>
+                <h5 align="center" style="margin-bottom:0px;"><i>has completed the course</i></h5>
+                <h3 align="center" style="margin-top:5px;"><b id="courseName"></b></h3>
+            </div>
+            <div class="text-block-left">
+                <h5 align="center" style="margin-bottom:0px;"><i>Dates</i></h5>
+                <h4 align="center" style="margin-bottom:0px; margin-top:0px;" id="enrollmentEnd"></h4>
+            </div>
+            <div class="text-block-right">
+                <h5 align="center" style="margin-bottom:0px;"><i>Instructor</i></h5>
+                <h4 align="center" style="margin-bottom:0px; margin-top:0px;" id="instructorName"></h4>
+            </div>
+        </div>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+        <script>const userId = '@Context.Session.GetString("Id")';</script>
+        <script src="~/js/Student/cert.js" asp-append-version="true"></script>
+    </body>
+</html>

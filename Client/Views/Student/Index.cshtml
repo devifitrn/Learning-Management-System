@@ -1,0 +1,202 @@
+﻿@using Microsoft.AspNetCore.Http
+@{
+    ViewData["Title"] = "Student Page";
+    Layout = "_Layout";
+
+    @section Scripts{
+        <script>const userId = '@Context.Session.GetString("Id")';</script>
+        <script src="~/js/Student/Profile.js" asp-append-version="true"></script>
+    }
+    @section CSS{
+            <style type="text/css">
+                *{
+                    margin: 0;
+                    padding: 0;
+                }
+                .rate {
+                    text-align: center;
+                    height: 46px;
+                    padding: 0 10px;
+                    direction: rtl;
+                }
+                .rate:not(:checked) > input {
+                    position:absolute;
+                    top:-9999px;
+                }
+                .rate:not(:checked) > label {
+                    width:1em;
+                    overflow:hidden;
+                    white-space:nowrap;
+                    cursor:pointer;
+                    font-size:30px;
+                    color:#ccc;
+                }
+                .rate:not(:checked) > label:before {
+                    content: '★ ';
+                }
+                .rate > input:checked ~ label {
+                    color: #ffc700;    
+                }
+                .rate:not(:checked) > label:hover,
+                .rate:not(:checked) > label:hover ~ label {
+                    color: #deb217;  
+                }
+                .rate > input:checked + label:hover,
+                .rate > input:checked + label:hover ~ label,
+                .rate > input:checked ~ label:hover,
+                .rate > input:checked ~ label:hover ~ label,
+                .rate > label:hover ~ input:checked ~ label {
+                    color: #c59b08;
+                }
+            </style>
+        }
+}
+
+<div class="container-xl px-4 mt-4">
+    <h3 class="text-center">Profile & Enrollment</h3>
+    <div class="row">
+        <!-- navigation in .card-header -->
+        <div>
+            <ul class="nav nav-tabs nav-borders">
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tab1">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#tab2" >Enrollment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tab3">Settings</a>
+                </li>
+            </ul>
+        </div>
+        <!-- .card-body.tab-content  -->
+        <div class="card-body tab-content">
+            <div class="tab-pane content fade" id="tab1">
+                <div class="row">
+                    <div class="col-xl-4">
+                        <!-- Profile picture card-->
+                        <div class="card mb-4 mb-xl-0">
+                            <div class="card-header">Profile Picture</div>
+                            <div class="card-body text-center">
+                                <div id="picture-profile"></div>
+                                <!-- Profile picture image-->
+                                @*<img class="img-account-profile rounded-circle mb-2" width="200" src="http://assets.kompasiana.com/items/album/2021/03/24/blank-profile-picture-973460-1280-605aadc08ede4874e1153a12.png?t=o&v=770" alt="">*@
+                                <!-- Profile picture help block-->
+                                <!--<input class="form-control" type="file" id="foto" accept="image/*" required />
+                                <div class="invalid-feedback"> Harap Input Picture</div>-->
+                                <!-- Profile picture upload button-->
+                                <!--<button class="btn btn-primary mt-3" type="button" onclick="">Upload</button>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-8">
+                        <!-- Account details card-->
+                        <div class="card mb-4">
+                            <div class="card-header">Account Details</div>
+                            <div class="card-body">
+                                <form id="profile-detail"></form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button id="instructorButton"></button>
+                </div>
+            </div>
+            <div class="tab-pane active" id="tab2">
+                @*<div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover table-sm nowrap" width=100% id="tableEnrollment">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Id</th>
+                                    <th>Title</th>
+                                    <th>StartDate</th>
+                                    <th>IsComplete</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>*@
+                <div class="container-fluid px-4">
+                    <div class="row">
+                            <div class="card">
+                                <div class="card-body">
+                                    <table class="table table-sm table-hover mb-0 text-center" width="100%" id="table-course">
+                                    </table>
+                                </div>
+                            </div>
+                        @*
+                        <div class="col-md-4 mb-3">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div id="picture-course"></div>
+                                </div>
+                            </div>
+                        </div>*@
+                    </div>
+                    @*<div class="text-center">
+                        <a class="btn btn-primary" href="/Home/CourseView/">View</a>
+                        <button class="btn btn-primary" href="/Home/CourseView/">View Course</button>
+                    </div>*@
+                </div>
+            </div><!--/.card-body -->
+            <div class="tab-pane fade" id="tab3">
+                
+                    <h4 class="card-title">Tab 3 Title</h4>
+                    <p class="card-text">Never say Never. Dont't warry, be happy</p>
+                    <a href="#" class="btn btn-success">Read More 3</a>
+                
+            </div><!--/.card-body -->
+        </div>
+    </div>
+</div><!--/.container -->
+
+
+<div class="modal" id="reviewModal">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h5 class="modal-title">Form Ulasan</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form class="needs-validation">
+                    <input type="hidden" id="courseId" value="" />
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Rating</label>
+                            <div class="rate">
+                                <input type="radio" id="star5" name="rate" value="5"/>
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-3">
+                            <label for="name">Komentar</label>
+                            <textarea class="form-control" id="reviewComment" required></textarea>
+                            <div class="invalid-feedback"> Harap Input Title</div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary" id="submitButtonSubContent" type="submit" onclick="SubmitReview()">Kirim</button>
+                    </div>
+                </form>
+            </div>
+         </div>
+    </div>
+</div>

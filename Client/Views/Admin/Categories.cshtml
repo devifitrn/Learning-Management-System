@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+    Layout = "_AdminLayout";
+    @section Scripts{
+       <script src="~/js/Admin/categories.js" asp-append-version="true"></script>
+    }
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Categories</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">admin/categories</li>
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Course Categories
+            </div>
+            <div class="card-body" style="overflow-x: scroll">
+                <table id="Categories" class="display table table-bordered table-hover" style="width: 50%; text-align: center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody class="CategoriesData">
+                    </tbody>
+                </table>
+                <div style="text-align: center">
+                    <button id="addEmp" class="btn btn-dark ml-auto mr-auto" data-toggle="modal" data-target="#categoryModal">Add new category</button>
+                </div>
+            </div> 
+        </div>
+    </div>
+</main>
+
+
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-center">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">New Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form onsubmit="AddCategory()">
+                    <div class="form-row">
+                        <div class="col">
+                            <label for="cryName">Nama Kategori</label>
+                            <input id="cryName" type="text" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-primary d-block ml-auto" type="submit">Submit</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_AdminLayout";
+    @section Scripts{
+       <script src="~/js/Admin/courses.js" asp-append-version="true"></script>
+    }
+}
+
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Courses</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active">admin/courses</li>
+        </ol>
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Courses Data
+            </div>
+
+            <div class="card-body" style="overflow-x: scroll">
+                <table id="Courses" class="display table table-bordered table-hover" style="width: 70%; text-align: center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>JUDUL</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="CoursesData">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</main>

@@ -1,0 +1,260 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_LayoutHome";
+
+    @section Scripts{
+        <script src="~/js/Student/Student.js" asp-append-version="true"></script>
+    }
+}
+
+@*===========================================================Title================================================================*@
+
+@*<div class="d-flex text-center mt-3 ">
+        <h1>Student</h1>
+    </div>*@
+@*=======================================================Button Register==========================================================*@
+@*<button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#registerModal">
+        Form Register
+    </button>*@
+
+@*<div class="" role="dialog" aria-labelledby="ModalCategory" aria-hidden="true" id="categories">
+        <div class="form-group">
+            <label type="number" for="gender">Categories :</label>
+            <select class="custom-select" id="Category" onsubmit="">
+                <option value="">Choose Categories</option>
+                <option value="1">Business</option>
+                <option value="2">IT</option>
+                <option value="3">Science</option>
+                <option value="4">Marketing</option>
+                <option value="5">Person Development</option>
+            </select>
+        </div>
+        <div class="invalid-feedback">
+            Please provide a valid Gender.
+        </div>
+    </div>*@
+
+<!------------------------------------------------------- Modal Register---------------------------------------------------------->
+<div class="modal fade bd-example-modal-lg " id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-lg">
+                <div class="container">
+                    <form class="needs-validation novalidate mt-4">
+                        <div class="form-row">
+                            <div class="col mb-1">
+                                <label for="firstname">First Name</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="First name" value="" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid First Name
+                                </div>
+                            </div>
+                            <div class="col mb-1">
+                                <label for="lastname">Last Name</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Last name" value="" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Last Name
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-4 mb-1">
+                                <label for="birthdate">Birthdate</label>
+                                <input type="date" class="form-control" id="birthdate" placeholder="birthdate" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Birthdate
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-1">
+                                <label type="number" for="gender">Gender</label>
+                                <select class="custom-select" id="gender" required>
+                                    <option value="">Choose Gender</option>
+                                    <option value="0">Male</option>
+                                    <option value="1">Female</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Gender.
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-1">
+                                <label for="phone">Phone Number</label>
+                                <input type="text" class="form-control" id="phone" placeholder="08xxx" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Phone Number
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-1">
+                                <label for="email">Email</label>
+                                <input type="text" class="form-control" id="email" placeholder="email" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Gmail
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-1">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="password" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid Password.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="price">Picture</label>
+                                <input class="form-control" type="file" id="foto" accept="image/*" required />
+                                <div class="invalid-feedback"> Harap Input Picture</div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="invalidCheck3" required>
+                                <label class="form-check-label" for="invalidCheck3">
+                                    Agree to terms and conditions
+                                </label>
+                                <div class="invalid-feedback">
+                                    You must agree before submitting.
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary m-4" onclick="Insert()" type="submit">Submit form</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!------------------------------------------------------- List Course---------------------------------------------------------->
+<div class="container">
+    @*<h1 class="text-center">COURSE</h1>*@
+    <div class="row">
+        <div class="col center">
+            <div class="card text-center my-4">
+                <!-- navigation in .card-header -->
+                <div class="card-header center" onsubmit="content()">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#tab1">All</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab2">IT</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab3">Science</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab4">Design</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tab5">Personal Development</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- .card-body.tab-content  -->
+                <div class="card-body tab-content">
+                    <div class="tab-pane container active" id="tab1">
+                        <div class="row" id="contentCourse">
+
+                        </div>
+                    </div>
+                    <div class="tab-pane container fade" id="tab2">
+                        <h4 class="card-title">Tab 2 Title</h4>
+                        <p class="card-text">
+                            Don't give up
+                            'cos you have friends
+                        </p>
+                        <a href="#" class="btn btn-danger">Read More 2</a>
+                    </div>
+                    <div class="tab-pane container fade" id="tab3">
+                        <h4 class="card-title">Tab 3 Title</h4>
+                        <p class="card-text">Never say Never. Dont't warry, be happy</p>
+                        <a href="#" class="btn btn-success">Read More 3</a>
+                    </div>
+                </div><!--/.card-body -->
+            </div><!--/.card-->
+        </div><!--/.col-sm-6 -->
+
+    </div>
+</div><!--/.container -->
+<!------------------------------------------------------- Get Certificate---------------------------------------------------------->
+@*<div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid #787878">
+        <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid #787878">
+            <span style="font-size:50px; font-weight:bold">Certificate of Completion</span>
+            <br><br>
+            <span style="font-size:25px"><i>This is to certify that</i></span>
+            <br><br>
+            <span style="font-size:30px"><b>$student.getFullName()</b></span><br /><br />
+            <span style="font-size:25px"><i>has completed the course</i></span> <br /><br />
+            <span style="font-size:30px">$course.getName()</span> <br /><br />
+            <span style="font-size:20px">with score of <b>$grade.getPoints()%</b></span> <br /><br /><br /><br />
+            <span style="font-size:25px"><i>dated</i></span><br>
+            #set ($dt = $DateFormatter.getFormattedDate($grade.getAwardDate(), "MMMM dd, yyyy"))
+            <span style="font-size:30px">$dt</span>
+        </div>
+    </div>*@
+
+<!------------------------------------------------------- Get Review---------------------------------------------------------->
+
+<section class="features-icons bg-light text-center">
+    <div class="container">
+        <div class="row">
+            <h3>Top Categories</h3>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                    <h3>Business</h3>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                    <h3>IT</h3>
+
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                    <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                    <h3>Personal Development</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Testimonials-->
+<section class="testimonials text-center bg-light">
+    <div class="container">
+        <h2 class="mb-5">What people are saying about Udemy Courses...</h2>
+        <div class="row text-center" id="reviewCourses">
+            @*<div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-1.jpg" alt="..." />
+                    <h5>Margaret E.</h5>
+                    <p class="font-weight-light mb-0">"This is fantastic! Thanks so much guys!"</p>
+                </div>
+            </div>*@
+           @* <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-2.jpg" alt="..." />
+                    <h5>Fred S.</h5>
+                    <p class="font-weight-light mb-0">"Udemy is amazing. I can learn easily through this course."</p>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="assets/img/testimonials-3.jpg" alt="..." />
+                    <h5>Sarah W.</h5>
+                    <p class="font-weight-light mb-0">"Thanks so much for making these free resources available to us!"</p>
+                </div>
+            </div>*@
+        </div>
+    </div>
+</section>
